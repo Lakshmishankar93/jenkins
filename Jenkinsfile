@@ -24,17 +24,10 @@ pipeline {
     }
     post {
         always {
-            // Send email notification
-            mail to: 'laxmi.aadhavan1993@gmail.com',
-                 cc: 'laxmi.aadhavan1993@gmail.com',
-                 bcc: '',
-                 subject: "${currentBuild.result}: ${env.JOB_NAME}",
-                 body: """
-                     Project: ${env.JOB_NAME}
-                     Build Number: ${env.BUILD_NUMBER}
-                     Build URL: ${env.BUILD_URL}
-                     Result: ${currentBuild.result}
-                 """
+            mail bcc: 'laxmi.aadhavan1993@gmail.com', body: """project=>${env.JOB_name}
+   build number=>${env.BUILD_NUMBER}
+   url=>${env.BUILD_URL}
+Result:=>${currentBuild.result}""", cc: 'laxmi.aadhavan1993@gmail.com', from: '', replyTo: '', subject: "${currentBuild.result}", to: 'laxmi.aadhavan1993@gmail.com'
         }
     }
 }
